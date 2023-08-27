@@ -18,6 +18,7 @@ const hat = '^';
 const hole = 'O';
 const fieldCharacter = '░';
 const pathCharacter = '*';
+const heart = '$';
 
 
 class Field {
@@ -31,7 +32,7 @@ class Field {
   }
   //print field method to make it eaier 
   printMap() {
-    // clear();
+    clear(); //clear function 
     // your print map code here
     let row = ""
     for(let i=0;i<=this.field.length-1;i++){
@@ -46,7 +47,7 @@ class Field {
 
   control(){
     const max_index = this.field.length-1;
-    const max_index_row = this.field[0].length-1;
+    const max_index_row = this.field[0].length-1;//dead situation
     let _copy = 0;
     const prompt = require('prompt-sync')({ sigint: true }); // This sends a SIGINT, or “signal interrupt” message indicating that a user wants to exit a program by press Crtl+
     let control = prompt("l:Left,r:right,u:up,d:Down?:");
@@ -63,9 +64,20 @@ class Field {
                 //out of min range
                 console.log("Out of range: pos < 0")
             }else{
-                this.positionY -= 1;
-                console.log("New: " + this.positionY)
-                this.field[this.positionX][this.positionY] = pathCharacter;
+                if(check_object('l',this.positionX,this.positionY,this.field) === fieldCharacter){
+                    console.log("true fieldCharacter");
+                    this.positionY -= 1;
+                    console.log("New: " + this.positionY)
+                    this.field[this.positionX][this.positionY] = pathCharacter;
+                }
+                else if(check_object('l',this.positionX,this.positionY,this.field) === hat){
+                    console.log("Find hate");
+                    this.status = false;
+                }
+                else if(check_object('l',this.positionX,this.positionY,this.field) === hole){
+                    console.log("Hold end game");
+                    this.status = false;
+                }
             }
             break;
         case 'r':
@@ -75,9 +87,20 @@ class Field {
                 //out of min range
                 console.log(`Out of range: pos > ${max_index_row}`);
             }else{
-                this.positionY += 1;
-                console.log("New: " + this.positionY)
-                this.field[this.positionX][this.positionY] = pathCharacter;
+                if(check_object('r',this.positionX,this.positionY,this.field) === fieldCharacter){
+                    console.log("true fieldCharacter");
+                    this.positionY += 1;
+                    console.log("New: " + this.positionY)
+                    this.field[this.positionX][this.positionY] = pathCharacter;
+                }
+                else if(check_object('r',this.positionX,this.positionY,this.field) === hat){
+                    console.log("Find hate");
+                    this.status = false;
+                }
+                else if(check_object('r',this.positionX,this.positionY,this.field) === hole){
+                    console.log("Hold end game");
+                    this.status = false;
+                }
             }
             break;
         case 'u':
@@ -86,9 +109,20 @@ class Field {
             if(_copy < 0){
                 console.log("Out of range: pos < 0");
             }else{
-                this.positionX -= 1;
-                console.log("New:" + this.positionX);
-                this.field[this.positionX][this.positionY] = pathCharacter;
+                if(check_object('u',this.positionX,this.positionY,this.field) === fieldCharacter){
+                    console.log("true fieldCharacter");
+                    this.positionX -= 1;
+                    console.log("New:" + this.positionX);
+                    this.field[this.positionX][this.positionY] = pathCharacter;
+                }
+                else if(check_object('u',this.positionX,this.positionY,this.field) === hat){
+                    console.log("Find hate");
+                    this.status = false;
+                }
+                else if(check_object('u',this.positionX,this.positionY,this.field) === hole){
+                    console.log("Hold end game");
+                    this.status = false;
+                }
             }
             break;
         case 'd':
@@ -97,11 +131,44 @@ class Field {
             if(_copy > max_index){
                 console.log("Out of range: pos >" +max_index);
             }else{
-                this.positionX += 1;
-                console.log("New:" + this.positionX);
-                this.field[this.positionX][this.positionY] = pathCharacter;
+                if(check_object('d',this.positionX,this.positionY,this.field) === fieldCharacter){
+                    console.log("true fieldCharacter");
+                    this.positionX += 1;
+                    console.log("New:" + this.positionX);
+                    this.field[this.positionX][this.positionY] = pathCharacter;
+                }
+                else if(check_object('d',this.positionX,this.positionY,this.field) === hat){
+                    console.log("Find hate");
+                    this.status = false;
+                }
+                else if(check_object('d',this.positionX,this.positionY,this.field) === hole){
+                    console.log("Hold end game");
+                    this.status = false;
+                }
             }
             break;
+    }
+
+    function check_object(direction,posx,posy,field){
+        let get_posx = posx;
+        let get_posy = posy;
+        let get_field = field;
+        let object_to = "";
+        switch(direction){
+            case'l':
+                object_to = get_field[get_posx][get_posy-1];
+                break;
+            case'r':
+            object_to = get_field[get_posx][get_posy+1];
+                break;
+            case'u':
+                object_to = get_field[get_posx-1][get_posy];
+                break;
+            case 'd':
+                object_to = get_field[get_posx+1][get_posy];
+                break;
+        }
+        return object_to;
     }
   }
 
@@ -112,10 +179,10 @@ class Field {
     }
   }
 
+    
+
 
 }
-
-
 
 const myField = new Field([
     ['*', '░', 'O'],
