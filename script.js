@@ -1,5 +1,5 @@
-//--- Please copy and paste your GitHub Repo on line 2 (optional) ---//
-// <GitHub Repo>
+// Please copy and paste your GitHub Repo on line 2 (optional)
+// https://github.com/thanachot30/javascript_exam
 
 // JavaScript Assessment Rubric: https://generation.instructure.com/courses/2342/assignments/143783
 
@@ -9,9 +9,8 @@
 // step 1 :อ่านโจทย์ว่า เค้าต้องการให้สร้างเกม ตามหาหมวก โดยเมื่อเดินทงไปเจอหมวกจะชนะเกมนี้ แต่ถ้าเดินทางไปเจอหลุมจะแพ้ โดยเกมนี้เล่นบนหน้าต่าง terminal ,การบังคับ 4ทิศทางใช้การพิมเข้าทาง terminal ท้ังหมด
 //step 2: ผมทำการคิดองค์ประกอบของเกมออกมาก่อนว่ามีส่วนประกอบใดบ้าง ดังนี้            1.map :เป็นด่านการเดินทาง Displayเป็นตำแหน่งของการเดินที่เปลี่ยนแปลงไป ,ตำแหน่งของ holdและ hat.                                                           2.input direction:4 ทิศทาง การเคลื่อนที่ l:ซ้าย,r:ขวา,u:ขึ้น,d:ลง โดยจะมี curcorมารอรับคำ input
 //step3:เริ่มทดสอบทำส่วน map ก่อน โดยทดสอบ hardcode Array ขึ้นมาเป็นด้านก่อนจากนั้นทำการ print map ออกมาโดยใช้วิธีการ for loop 2 ชั้น ชั้น1 เป็น row ปริ้นออกมาที่ละแถว ชั้น 2เป็นข้อมูลในแถวนั้นๆ โดยจะขึ้นบรรทัดใหม่ทุกๆ row                                 ต่อมาทดสอบระบบ input โดยใช้ prompt-sync เป็นการรอรับ input ข้อมูล โดยเก็บ input ไว้ในตัวแปลนึงเพื่อนำไปใช้
-//step:4 เริ่มประกอบร่างรวมกันโดยทำการเขียน class start เพื่อใช้ในการเริ่มเกม while loop status==trur โดยในclass start การทำงานดังนี้                1.class.print map จาก array ออกมาเป็นด่าน                                 2.class.control รอรับ คำสั่งการเดิน โดยแบ่งเป็น 4ทิศทาง l:ซ้าย,r:ขวา,u:ขึ้น,d:ลง   เมื่อรับ ทิศทางมาแล้ว โปรแกรมจะทำการคำนวน position ต่อไปที่เราเดินโดย _copy position ไว้แล้วเช็คเงื่อนไงต่างๆ ว่า out of range array หรือไม่ ถ้าไม่ก็จะทำการเช็คต่อว่าตำแหน่งที่จะเดินต่อไปนั้นเป็น object อะไร ถ้าเป็นพื้นโปรแกรมก็จะทำการ update array map จริง แต่ถ้าเป็น hold,hat ไม่update map จริงและโปรแกรมจะทำการเปลี่ยน status = false เพื่อออก
-
-
+//step:4 เริ่มประกอบร่างรวมกันโดยทำการเขียน class start เพื่อใช้ในการเริ่มเกม while loop status==trur โดยในclass start การทำงานดังนี้                1.class.print map จาก array ออกมาเป็นด่าน                                 2.class.control รอรับ คำสั่งการเดิน โดยแบ่งเป็น 4ทิศทาง l:ซ้าย,r:ขวา,u:ขึ้น,d:ลง   เมื่อรับ ทิศทางมาแล้ว โปรแกรมจะทำการคำนวน position ต่อไปที่เราเดินโดย _copy position ไว้แล้วเช็คเงื่อนไงต่างๆ ว่า out of range array หรือไม่ ถ้าไม่ก็จะทำการเช็คต่อว่าตำแหน่งที่จะเดินต่อไปนั้นเป็น object อะไร ถ้าเป็นพื้น โปรแกรมก็จะทำการ เปลี่ยน พื้นเป็นรถ และ update array map จริงและ loop ขั้นตอนที่ 1 ต่อไป แต่ถ้าเป็น hold:print hold,hat:find hat ไม่update map และโปรแกรมจะทำการเปลี่ยน status = false เพื่อออกจากโปรแกรม.
+//step:5 ramdom map จากจุดเริ่มต้นผมได้ใช้ head code map ต้องการจะสร้าง method generate map ramdom hold hat car โดยวิธีการคือ สร้าง Array [20][20] 2มิติตามตอนนี้ fix ที่20 20 จากนั้นทำการ loop แต่ index โดย ในแต่ละ index ramdom เลข 0-1 ถ้า >0.2.ให้ index นั้นเป็น พื้นแต่ถ้าไม่ ให้เป็น hold loop ไปทุกๆ index จนครบ    ต่อมาเป็นการวาง hat โดย ทำการ while loop random index Array[ramdomX][randomy] โดยทำการเช็ค ถ้าเป็นพื้น ให้แทนที่ค่าเป็น hat เลยและออกจาก loop แต่ถ้าเป็นอย่างอื่นก็ ramdom ใหม่ สรุปคือ
 
 // JS Assessment: Find your hat //
 
@@ -203,7 +202,7 @@ class Field {
   }
 }
 
-const myField = new Field(Field.generateField(10,10));
+const myField = new Field(Field.generateField(20,20));
 
 // node script.js
 myField.start();
@@ -229,6 +228,5 @@ myField.start();
 //     ['░', '^', '░','░','░','░'],
 //     ['░', 'O', '░','░','░','░'],
 //     ['░', '^', '░','░','░','░'],
-   
 //   ]
 
